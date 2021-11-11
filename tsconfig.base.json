@@ -13,8 +13,11 @@
     "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
+    "resolveJsonModule": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@npx-dev/products": ["libs/products/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

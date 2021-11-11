@@ -1,6 +1,32 @@
 {
   "version": 1,
   "projects": {
+    "products": {
+      "projectType": "library",
+      "root": "libs/products",
+      "sourceRoot": "libs/products/src",
+      "prefix": "npx-dev",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/products"],
+          "options": {
+            "jestConfig": "libs/products/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/products/src/**/*.ts",
+              "libs/products/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
     "shopping-cart": {
       "projectType": "application",
       "root": "apps/shopping-cart",
