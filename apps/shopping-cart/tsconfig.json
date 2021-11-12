@@ -15,14 +15,16 @@
   ],
   "compilerOptions": {
     "forceConsistentCasingInFileNames": true,
-    "strict": true,
+    "strict": false,
+    "strictNullChecks": false,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "strictPropertyInitialization": false
   },
   "angularCompilerOptions": {
-    "strictInjectionParameters": true,
-    "strictInputAccessModifiers": true,
+    "strictInjectionParameters": false,
+    "strictInputAccessModifiers": false,
     "strictTemplates": true
   }
 }

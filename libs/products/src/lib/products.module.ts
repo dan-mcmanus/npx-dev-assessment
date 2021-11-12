@@ -7,6 +7,9 @@ import { ProductsEffects } from './+state/products/products.effects';
 import { ProductsFacade } from './+state/products/products.facade';
 import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
+import { ProductListComponent } from './components/product-list/product-list.component';
+import { ProductsService } from './services/products.service';
+import { ProductCardComponent } from './components/product-card/product-card.component';
 
 @NgModule({
   imports: [
@@ -19,6 +22,14 @@ import {HttpClientModule} from '@angular/common/http';
     ),
     EffectsModule.forFeature([ProductsEffects]),
   ],
-  providers: [ProductsFacade],
+  providers: [ProductsFacade, ProductsService],
+  declarations: [
+    ProductListComponent,
+    ProductCardComponent
+  ],
+  exports: [
+    ProductListComponent,
+    ProductCardComponent
+  ],
 })
 export class ProductsModule {}

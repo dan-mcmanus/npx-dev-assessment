@@ -1,68 +1,76 @@
-{
-  "products": [
+
+  [
     {
+      "id": 1,
       "name": "16lb bag of Skittles",
       "retailPrice": 16.00,
       "isImport": false,
       "hasBasicTaxExclusion": false,
       "priceWithTax": 0,
-      "basketId": null
+      "basketId": 1
     },
     {
+      "id": 2,
       "name": "Walkman",
       "retailPrice": 99.99,
       "isImport": false,
       "hasBasicTaxExclusion": false,
       "priceWithTax": 0,
-      "basketId": null
+      "basketId": 1
     },
     {
+      "id": 3,
       "name": "bag of microwave Popcorn",
       "retailPrice": 0.99,
       "isImport": false,
       "hasBasicTaxExclusion": false,
       "priceWithTax": 0,
-      "basketId": null
+      "basketId": 1
     },
     {
+      "id": 4,
       "name": "bag of Vanilla-Hazelnut Coffee",
       "retailPrice": 11.00,
       "isImport": true,
       "hasBasicTaxExclusion": false,
       "priceWithTax": 0,
-      "basketId": null
+      "basketId": 2
     },
     {
+      "id": 5,
       "name": "Vespa",
       "retailPrice": 15001.25,
       "isImport": true,
       "hasBasicTaxExclusion": false,
       "priceWithTax": 0,
-      "basketId": null
+      "basketId": 2
     },
     {
+      "id": 6,
       "name": "crate of Almond Snickers",
       "retailPrice": 75.99,
       "isImport": true,
       "hasBasicTaxExclusion": false,
       "priceWithTax": 0,
-      "basketId": null
+      "basketId": 3
     },
     {
+      "id": 7,
       "name": "Bottle of Wine",
       "retailPrice": 10.00,
       "isImport": true,
       "hasBasicTaxExclusion": false,
       "priceWithTax": 0,
-      "basketId": null
+      "basketId": 3
     },
     {
+      "id": 8,
       "name": "300# bag of Fair-Trade Coffee",
       "retailPrice": 997.99,
       "isImport": false,
       "hasBasicTaxExclusion": false,
       "priceWithTax": 0,
-      "basketId": null
+      "basketId": 3
     }
   ]
-}
+

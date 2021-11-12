@@ -27,6 +27,7 @@
       },
       "tags": []
     },
+
     "shopping-cart": {
       "projectType": "application",
       "root": "apps/shopping-cart",

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { select, Store, Action } from '@ngrx/store';
+import { ProductsService } from '../../services/products.service';
 
 import * as ProductsActions from './products.actions';
 import * as ProductsFeature from './products.reducer';
@@ -15,7 +16,8 @@ export class ProductsFacade {
   allProducts$ = this.store.pipe(select(ProductsSelectors.getAllProducts));
   selectedProducts$ = this.store.pipe(select(ProductsSelectors.getSelected));
 
-  constructor(private readonly store: Store) {}
+  constructor(private readonly store: Store) {
+  }
 
   /**
    * Use the initialization action to perform one
@@ -23,5 +25,9 @@ export class ProductsFacade {
    */
   init() {
     this.store.dispatch(ProductsActions.init());
+  }
+
+  selectProduct(productId: string |number) {
+    console.log(productId)
   }
 }

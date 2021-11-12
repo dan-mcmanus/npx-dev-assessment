@@ -1,0 +1,18 @@
+<div class="d-flex">
+  <div *ngIf="allProducts$ | async as allProducts">
+    <div *ngFor="let product of allProducts">
+      <npx-dev-product-card [product]="product"></npx-dev-product-card>
+    </div>
+    <!-- <div class="card text-black mb-2" style="max-width: 75%" >
+      <div class="row" *ngFor="let product of allProducts">
+          <div class="card-body">
+            <span class="h5 card-title">{{product.name}}</span>
+
+            <span class="h6 card-text m-4">{{product.retailPrice}}</span>
+            <p class="card-text"></p>
+          </div>
+        </div>
+      </div> -->
+
+  </div>
+</div>
