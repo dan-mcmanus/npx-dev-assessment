@@ -10,6 +10,7 @@ export interface ProductsEntity {
   priceWithTax?: number;
   quantity: number;
   basketId?: number;
+  stringRetailPrice?: string;
 }
 
 export interface Product {
@@ -21,4 +22,5 @@ export interface Product {
   priceWithTax?: number;
   quantity: number;
   basketId?: number;
+  stringRetailPrice?: string;
 }

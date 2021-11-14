@@ -1,6 +1,10 @@
-import { Component, OnInit, ChangeDetectionStrategy, ElementRef, ViewChild } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ElementRef, ViewChild, OnInit, LOCALE_ID } from '@angular/core';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import { BasketsFacade } from './+state/baskets/baskets.facade';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { groupBy, map, tap } from 'rxjs/operators';
+import { formatCurrency } from '@angular/common';
 
 @Component({
   selector: 'npx-dev-basket',
@@ -10,110 +14,129 @@ import html2canvas from 'html2canvas';
 })
 export class BasketsComponent {
 
-  @ViewChild('htmlData') htmlData!:ElementRef;
+  @ViewChild('htmlData') htmlData!: ElementRef;
 
+  // invoiceForm = this.fb.group({
+  //   id: [''],
+  //   basketName: [''],
+  //   transactionFinalized: [''],
+  //   selectedProducts: this.fb.group({
+  //     price: '',
+  //     taxes: '',
+  //     quantity: ''
+  //   })
+  // });
+
+
+  payload = '';
   invoice = new Invoice();
+  selectedProducts: any;
+  loaded$ = this.basketsFacade.loaded$;
+  selectedBasket$ = this.basketsFacade.selectedBaskets$;
+  allBaskets$ = this.basketsFacade.allBaskets$;
 
-  USERS = [
-    {
-      "id": 1,
-      "name": "Leanne Graham",
-      "email": "sincere@april.biz",
-      "phone": "1-770-736-8031 x56442"
-    },
-    {
-      "id": 2,
-      "name": "Ervin Howell",
-      "email": "shanna@melissa.tv",
-      "phone": "010-692-6593 x09125"
-    },
-    {
-      "id": 3,
-      "name": "Clementine Bauch",
-      "email": "nathan@yesenia.net",
-      "phone": "1-463-123-4447",
-    },
-    {
-      "id": 4,
-      "name": "Patricia Lebsack",
-      "email": "julianne@kory.org",
-      "phone": "493-170-9623 x156"
-    },
-    {
-      "id": 5,
-      "name": "Chelsey Dietrich",
-      "email": "lucio@annie.ca",
-      "phone": "(254)954-1289"
-    },
-    {
-      "id": 6,
-      "name": "Mrs. Dennis",
-      "email": "karley@jasper.info",
-      "phone": "1-477-935-8478 x6430"
-    }
-  ];
+  onSubmit() {
+    this.payload = ''
+  }
+
+  constructor(private basketsFacade: BasketsFacade, private fb: FormBuilder) {
+    this.basketsFacade.init();
+  }
 
 
-  public generatePDF(action = 'open') {
+
+  // public generatePDF(action = 'open') {
+  //   const DATA: unknown = document.getElementById('htmlData');
+
+  //   html2canvas(DATA as never).then(canvas => {
+
+  //       const fileWidth = 208;
+  //       const fileHeight = canvas.height * fileWidth / canvas.width;
+
+  //       const FILEURI = canvas.toDataURL('image/png')
+  //       const PDF = new jsPDF('p', 'mm', 'a4');
+  //       const position = 0;
+  //       PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight)
+
+  //       PDF.save('angular-demo.pdf');
+  //   });
+
+  // }
+
+  public openPDF(action?: string): void {
     const DATA: unknown = document.getElementById('htmlData');
 
     html2canvas(DATA as never).then(canvas => {
 
-        const fileWidth = 208;
-        const fileHeight = canvas.height * fileWidth / canvas.width;
+      const fileWidth = 208;
+      const fileHeight = canvas.height * fileWidth / canvas.width;
 
-        const FILEURI = canvas.toDataURL('image/png')
-        const PDF = new jsPDF('p', 'mm', 'a4');
-        const position = 0;
-        PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight)
+      const FILEURI = canvas.toDataURL('image/png')
+      const PDF = new jsPDF('p', 'mm', 'a4');
+      const position = 0;
+      PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight)
 
-        PDF.save('angular-demo.pdf');
-    });
-
-  }
-
-  public openPDF():void {
-    const DATA: unknown = document.getElementById('htmlData');
-
-    html2canvas(DATA as never).then(canvas => {
-
-        const fileWidth = 208;
-        const fileHeight = canvas.height * fileWidth / canvas.width;
-
-        const FILEURI = canvas.toDataURL('image/png')
-        const PDF = new jsPDF('p', 'mm', 'a4');
-        const position = 0;
-        PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight)
-
-        PDF.save('angular-demo.pdf');
+      PDF.save('angular-demo.pdf');
     });
   }
 
-  addProduct(){
-    this.invoice.products.push(new Product());
+  addProduct(product) {
+    this.invoice.products.push(
+      product.id,
+      product.name,
+      product.retailPrice,
+      product.isImport,
+      product.hasBasicTaxExclusion,
+      product.quantity,
+      product.priceWithTax,
+      product.basketId
+    );
   }
 
 }
 
 
 
-class Product {
-  name = '';
-  price = 0;
-  qty = 1;
+class ProductVm {
+  id: string | number; // Primary ID
+  name: string;
+  retailPrice: number;
+  isImport: boolean;
+  hasBasicTaxExclusion: boolean;
+  quantity = 1;
+  priceWithTax?: number;
+  basketId?: number;
+
+
+  constructor(id: number,// Primary ID
+    name: string,
+    retailPrice: number,
+    isImport: boolean,
+    hasBasicTaxExclusion: boolean,
+    quantity: number,
+    priceWithTax?: number,
+    basketId?: number) {
+
+    this.id = id;
+    this.name = name;
+    this.isImport = isImport;
+    this.hasBasicTaxExclusion = hasBasicTaxExclusion;
+    this.quantity = quantity;
+    this.priceWithTax = priceWithTax;
+    this.basketId = basketId;
+  }
+
+
 }
+
 
 class Invoice {
-  customerName = '';
-  address = '';
-  contactNo?: number;
-  email = '';
 
-  products: Product[] = [];
-  additionalDetails = '';
-
+  products: ProductVm[] = [];
+  totalRetailPrice: number;
+  totalWithTax: number;
   constructor() {
     // Initially one empty product row we will show
-    this.products.push(new Product());
+
   }
 }

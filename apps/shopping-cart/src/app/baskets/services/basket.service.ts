@@ -1,22 +1,33 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { Basket } from '../../core/model/basket';
+import { DataServiceError } from '../../services';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class BasketService {
-  constructor(private http: HttpClient) {
+  apiUrlBase = environment.apiUrlBase;
+
+  constructor(private http: HttpClient) { }
+
+  getBaskets(): Observable<Basket[]> {
+    return this.http.get<Basket[]>(`${this.apiUrlBase}/baskets`)
+    .pipe(
+      catchError(this.handleError())
+    );
   }
 
-  getBasketById(basketId: number): Observable<Basket | undefined> {
-    const url = 'assets/baskets.data.json';
-    return this.http.get<Basket[]>(url)
-      .pipe(
-        map(baskets => baskets.find(basket => basket.id === basketId))
-      );
+  private handleError<T>(requestData?: T) {
+    return (res: HttpErrorResponse) => {
+      const error = new DataServiceError(res.error, requestData);
+      console.error(error);
+      // return new ErrorObservable(error);
+      return throwError(error);
+    };
   }
 }

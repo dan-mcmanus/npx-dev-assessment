@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 
 import { AppModule } from './app.module';
 import { AppComponent } from './app.component';
@@ -15,7 +15,11 @@ import { InMemoryDataService } from './core/in-memory-data.service';
       passThruUnknownUrl: true
     })
   ],
-  providers: [ { provide: InMemoryDataService, useExisting: InMemoryDbService } ],
+  providers: [
+    { provide: InMemoryDataService, useExisting: InMemoryDbService },
+    {provide: LOCALE_ID, useValue: 'en-US' }
+
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppDevModule {}

@@ -1,8 +1,9 @@
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ProductsEntity } from '@npx-dev/products';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { ProductsEntity } from '../+state/products/products.models';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { catchError } from 'rxjs/operators';
 export class ProductsService {
 
   constructor(private http: HttpClient) { }
-  private apiUrl = 'assets/products.data.json';
+  apiUrl = `api/products`
   getProducts(): Observable<ProductsEntity[]> {
     return this.http.get<ProductsEntity[]>(this.apiUrl)
     .pipe(

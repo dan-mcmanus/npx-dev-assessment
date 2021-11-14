@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { CoreModule } from './core/core.module';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 export const metaReducers: MetaReducer<any>[] = environment.production ? [] : [];
 @NgModule({
@@ -20,6 +21,7 @@ export const metaReducers: MetaReducer<any>[] = environment.production ? [] : []
     CommonModule,
     SharedModule,
     BrowserModule,
+    FormsModule,
     BrowserAnimationsModule,
     CoreModule,
     HttpClientModule,

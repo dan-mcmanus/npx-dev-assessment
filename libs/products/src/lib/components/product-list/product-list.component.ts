@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { ProductsFacade } from '@npx-dev/products';
+import { ProductsFacade } from '../../+state/products/products.facade';
 
 @Component({
   selector: 'npx-dev-products-list',
