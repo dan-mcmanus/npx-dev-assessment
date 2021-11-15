@@ -38,11 +38,10 @@ describe('BasketsFacade', () => {
     beforeEach(() => {
       @NgModule({
         imports: [
-          StoreModule.forFeature(BASKETS_FEATURE_KEY, reducer),
-          EffectsModule.forFeature([BasketsEffects]),
+          StoreModule.forRoot({}),
+          EffectsModule.forRoot([]),
           HttpClientTestingModule
         ],
-        schemas: [NO_ERRORS_SCHEMA],
         providers: [BasketsFacade, BasketService, ReducerManager, StoreFeatureModule],
       })
       class CustomFeatureModule {}
@@ -50,11 +49,8 @@ describe('BasketsFacade', () => {
       @NgModule({
         imports: [
           NxModule.forRoot(),
-          StoreModule.forFeature(
-            fromBaskets.BASKETS_FEATURE_KEY,
-            fromBaskets.reducer
-          ),
-          EffectsModule.forFeature([BasketsEffects]),
+          StoreModule.forFeature({}),
+          EffectsModule.forFeature([]),
           CustomFeatureModule,
           HttpClientTestingModule
         ],
