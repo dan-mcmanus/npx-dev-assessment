@@ -8,14 +8,15 @@ export class TaxRule {
 
   computeSalesTax(product: ProductsEntity, quantity: number = 1): number {
     if (product.category.taxExempt || product.taxExempt) {
-      return 0;
+      this.salesTax = 0;
+      return this.salesTax;
     }
 
     return this.roundUp(product.unitPrice * quantity * this.salesTax, this.roundToNearest);
   }
 
   computeDutyTax(product: ProductsEntity, quantity: number = 1): number {
-    return !product.imported ? 0 : this.roundUp(product.unitPrice * quantity * this.salesTax, this.roundToNearest);
+    return !product.imported ? 0.00 : this.roundUp(product.unitPrice * quantity * this.dutyTax, this.roundToNearest);
   }
 
   /*

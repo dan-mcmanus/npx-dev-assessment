@@ -12,3 +12,8 @@ export const loadBasketsFailure = createAction(
   '[Baskets/API] Load Baskets Failure',
   props<{ error: any }>()
 );
+
+export const selectBasket = createAction(
+  '[Baskets/API] Select Basket',
+  props<{ baskets: BasketsEntity[] }>()
+)

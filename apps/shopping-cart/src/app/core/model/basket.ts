@@ -7,9 +7,3 @@ export interface Basket {
   transactionFinalized: boolean;
 }
 
-export interface BasketEntity {
-  id: number | string
-  name: string;
-  selectedProducts?: ProductsEntity[];
-  transactionFinalized?: boolean;
-}

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ProductsEntity } from '@npx-dev/products';
 
 import { RequestInfo, InMemoryDbService } from 'angular-in-memory-web-api';
-import { Basket, BasketEntity } from './model/basket';
+import { BasketsEntity } from '../baskets/+state/baskets/baskets.models';
 
 
 /** In-memory database data */
@@ -130,7 +130,7 @@ const products: ProductsEntity[] =
   }
 ]
 
-const baskets: BasketEntity[] = [
+const baskets: BasketsEntity[] = [
   {
     "id": 1,
     "name": "Basket 1",

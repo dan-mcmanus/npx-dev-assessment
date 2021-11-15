@@ -13,17 +13,11 @@ import { ProductVm } from '../core/model/product.viewmodel';
 export class BasketsComponent {
 
   @ViewChild('htmlData') htmlData!: ElementRef;
-  payload = '';
   invoice = new Invoice();
 
   loaded$ = this.basketsFacade.loaded$;
-  selectedBasket$ = this.basketsFacade.selectedBaskets$;
+  selectedBaskets$ = this.basketsFacade.selectedBaskets$;
   allBaskets$ = this.basketsFacade.allBaskets$;
-
-
-  onSubmit() {
-    this.payload = ''
-  }
 
   constructor(private basketsFacade: BasketsFacade) {
     this.basketsFacade.init();
@@ -33,7 +27,7 @@ export class BasketsComponent {
 
   public openPDF(action?: string): void {
     const DATA: unknown = document.getElementById('htmlData');
-
+    console.log(this.invoice)
     html2canvas(DATA as never).then(canvas => {
 
       const fileWidth = 208;

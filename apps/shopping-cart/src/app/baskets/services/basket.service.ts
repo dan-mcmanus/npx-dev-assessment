@@ -3,8 +3,9 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Basket } from '../../core/model/basket';
+
 import { DataServiceError } from '../../shared/data-error.service';
+import { BasketsEntity } from '../+state/baskets/baskets.models';
 
 
 @Injectable({
@@ -15,8 +16,8 @@ export class BasketService {
 
   constructor(private http: HttpClient) { }
 
-  getBaskets(): Observable<Basket[]> {
-    return this.http.get<Basket[]>(`${this.apiUrlBase}/baskets`)
+  getBaskets(): Observable<BasketsEntity[]> {
+    return this.http.get<BasketsEntity[]>(`${this.apiUrlBase}/baskets`)
     .pipe(
       catchError(this.handleError())
     );

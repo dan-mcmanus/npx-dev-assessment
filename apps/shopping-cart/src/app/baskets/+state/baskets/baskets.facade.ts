@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { select, Store, Action } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 
 import * as BasketsActions from './baskets.actions';
-import * as BasketsFeature from './baskets.reducer';
 import * as BasketsSelectors from './baskets.selectors';
 
 @Injectable()
@@ -15,6 +14,7 @@ export class BasketsFacade {
   allBaskets$ = this.store.pipe(select(BasketsSelectors.getAllBaskets));
   selectedBaskets$ = this.store.pipe(select(BasketsSelectors.getSelected));
 
+
   constructor(private readonly store: Store) {}
 
   /**
@@ -24,4 +24,6 @@ export class BasketsFacade {
   init() {
     this.store.dispatch(BasketsActions.init());
   }
+
+
 }

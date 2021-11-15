@@ -5,9 +5,11 @@ import { BasketsEntity } from './baskets.models';
 import { State, initialState, reducer } from './baskets.reducer';
 
 describe('Baskets Reducer', () => {
-  const createBasketsEntity = (id: string, name = ''): BasketsEntity => ({
+  const createBasketsEntity = (id: string, name = '', selectedProducts = [], transactionFinalized = false): BasketsEntity => ({
     id,
     name: name || `name-${id}`,
+    selectedProducts: [],
+    transactionFinalized: true
   });
 
   describe('valid Baskets actions', () => {
