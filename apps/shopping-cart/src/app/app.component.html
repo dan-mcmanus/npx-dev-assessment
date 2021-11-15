@@ -1,11 +1,29 @@
 
+<nav class="navbar sticky-top navbar-dark bg-primary d-flex">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Invoice</a>
+    <div class="bg-primary text-light text-center">
+
+      <a (click)="log($event)" class="bg-primary text-light border-none ">
+        <i class="fa fa-shopping-cart fa-2x me-4" aria-hidden="true"></i>
+      </a>
 
 
-
-    <div class="row">
-      <div class="column-md">
-        <npx-dev-basket></npx-dev-basket>
-
-      </div>
     </div>
+  </div>
+</nav>
+<div class="main">
+  <npx-dev-basket></npx-dev-basket>
+</div>
 
+
+<footer class="fixed-bottom">
+  <div class="bg-light text-center p-2">
+    <h6>Made by
+      <a href="https://github.com/dan-mcmanus/npx-dev-assessment" target="_blank">
+            Dan McManus
+          </a>
+          <i style="padding:0.5rem;" class="fa fa-github" aria-hidden="true"></i>
+      </h6>
+  </div>
+</footer>

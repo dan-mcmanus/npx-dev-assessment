@@ -2,9 +2,15 @@
 @import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 html, body {
-  margin: 2rem;
+  .navbar-brand {
+    margin-left: 1rem;
+  }
+  .main {
+    margin: 0 0.5rem;
 
-  .card, .btn {
-    border-radius: unset;
-}
+    .card, .btn {
+      border-radius: unset;
+    }
+  }
+
 }

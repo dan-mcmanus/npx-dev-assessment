@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Product } from '@npx-dev/products';
+import { ProductsEntity } from '@npx-dev/products';
 
 import { RequestInfo, InMemoryDbService } from 'angular-in-memory-web-api';
-import { Basket } from './model/basket';
+import { Basket, BasketEntity } from './model/basket';
 
-import { Order } from './model/order';
 
 /** In-memory database data */
 interface Db {
@@ -20,7 +19,7 @@ export class InMemoryDataService implements InMemoryDbService {
 
   /** Create the in-memory database. Sample data is found below. */
   createDb(reqInfo?: RequestInfo) {
-    return { baskets, products};
+    return { baskets, products };
   }
 
   /**
@@ -37,91 +36,101 @@ export class InMemoryDataService implements InMemoryDbService {
 
 }
 
-const products: Product[] =
+const products: ProductsEntity[] =
 [
   {
     "id": 1,
     "name": "16lb bag of Skittles",
-    "retailPrice": 16.00,
-    "isImport": false,
-    "hasBasicTaxExclusion": false,
-    "priceWithTax": 0,
-    "quantity": 1,
-    "basketId": 1
+    "category": {
+      "name": "Candy",
+      "taxExempt": true
+    },
+    "unitPrice": 16.00,
+    "imported": false,
+    "taxExempt": true
   },
   {
     "id": 2,
     "name": "Walkman",
-    "retailPrice": 99.99,
-    "isImport": false,
-    "hasBasicTaxExclusion": false,
-    "priceWithTax": 0,
-    "quantity": 1,
-    "basketId": 1
+    "category": {
+      "name": "Electronics",
+      "taxExempt": false
+    },
+    "unitPrice": 99.99,
+    "imported": false,
+    "taxExempt": false
   },
   {
     "id": 3,
     "name": "bag of microwave Popcorn",
-    "retailPrice": 0.99,
-    "isImport": false,
-    "hasBasicTaxExclusion": false,
-    "priceWithTax": 0,
-    "quantity": 1,
-    "basketId": 1
+    "category": {
+      "name": "Popcorn",
+      "taxExempt": true
+    },
+    "unitPrice": 0.99,
+    "imported": false,
+    "taxExempt": true
   },
   {
     "id": 4,
     "name": "bag of Vanilla-Hazelnut Coffee",
-    "retailPrice": 11.00,
-    "isImport": true,
-    "hasBasicTaxExclusion": false,
-    "priceWithTax": 0,
-    "quantity": 1,
-    "basketId": 2
+    "category": {
+      "name": "Coffee",
+      "taxExempt": true
+    },
+    "unitPrice": 11.00,
+    "imported": true,
+    "taxExempt": false
+
   },
   {
     "id": 5,
     "name": "Vespa",
-    "retailPrice": 15001.25,
-    "isImport": true,
-    "hasBasicTaxExclusion": false,
-    "priceWithTax": 0,
-    "quantity": 1,
-    "basketId": 2
+    "category": {
+      "name": "Transportation",
+      "taxExempt": false
+    },
+    "unitPrice": 15001.25,
+    "imported": true,
+    "taxExempt": false
   },
   {
     "id": 6,
     "name": "crate of Almond Snickers",
-    "retailPrice": 75.99,
-    "isImport": true,
-    "hasBasicTaxExclusion": false,
-    "priceWithTax": 0,
-    "quantity": 1,
-    "basketId": 3
+    "category": {
+      "name": "Candy",
+      "taxExempt": true
+    },
+    "unitPrice": 75.99,
+    "imported": true,
+    "taxExempt": false
+
   },
   {
     "id": 7,
     "name": "Bottle of Wine",
-    "retailPrice": 10.00,
-    "isImport": true,
-    "hasBasicTaxExclusion": false,
-    "priceWithTax": 0,
-    "quantity": 1,
-    "basketId": 3
+    "category": {
+      "name": "Wine",
+      "taxExempt": true
+    },
+    "unitPrice": 10.00,
+    "imported": true,
+    "taxExempt": false
   },
   {
     "id": 8,
     "name": "300# bag of Fair-Trade Coffee",
-    "retailPrice": 997.99,
-    "isImport": false,
-    "hasBasicTaxExclusion": false,
-    "priceWithTax": 0,
-    "quantity": 1,
-    "basketId": 3
+    "category": {
+      "name": "Coffee",
+      "taxExempt": true
+    },
+    "unitPrice": 997.99,
+    "imported": false,
+    "taxExempt": true
   }
 ]
 
-const baskets: Basket[] = [
+const baskets: BasketEntity[] = [
   {
     "id": 1,
     "name": "Basket 1",
@@ -129,29 +138,35 @@ const baskets: Basket[] = [
       {
         "id": 1,
         "name": "16lb bag of Skittles",
-        "retailPrice": 16.00,
-        "isImport": false,
-        "hasBasicTaxExclusion": false,
-        "priceWithTax": 0,
-        "quantity": 1
+        "category": {
+          "name": "Candy",
+          "taxExempt": true
+        },
+        "unitPrice": 16.00,
+        "imported": false,
+        "taxExempt": true
       },
       {
         "id": 2,
         "name": "Walkman",
-        "retailPrice": 99.99,
-        "isImport": false,
-        "hasBasicTaxExclusion": false,
-        "priceWithTax": 0,
-        "quantity": 1
+        "category": {
+          "name": "Electronics",
+          "taxExempt": false
+        },
+        "unitPrice": 99.99,
+        "imported": false,
+        "taxExempt": false
       },
       {
         "id": 3,
         "name": "bag of microwave Popcorn",
-        "retailPrice": 0.99,
-        "isImport": false,
-        "hasBasicTaxExclusion": false,
-        "priceWithTax": 0,
-        "quantity": 1
+        "category": {
+          "name": "Popcorn",
+          "taxExempt": true
+        },
+        "unitPrice": 0.99,
+        "imported": false,
+        "taxExempt": true
       }
     ],
     "transactionFinalized": false
@@ -163,20 +178,25 @@ const baskets: Basket[] = [
       {
         "id": 4,
         "name": "bag of Vanilla-Hazelnut Coffee",
-        "retailPrice": 11.00,
-        "isImport": true,
-        "hasBasicTaxExclusion": false,
-        "priceWithTax": 0,
-        "quantity": 1
+        "category": {
+          "name": "Coffee",
+          "taxExempt": true
+        },
+        "unitPrice": 11.00,
+        "imported": true,
+        "taxExempt": false
+
       },
       {
         "id": 5,
         "name": "Vespa",
-        "retailPrice": 15001.25,
-        "isImport": true,
-        "hasBasicTaxExclusion": false,
-        "priceWithTax": 0,
-        "quantity": 1
+        "category": {
+          "name": "Transportation",
+          "taxExempt": false
+        },
+        "unitPrice": 15001.25,
+        "imported": true,
+        "taxExempt": false
       }
     ],
     "transactionFinalized": false
@@ -188,29 +208,36 @@ const baskets: Basket[] = [
       {
         "id": 6,
         "name": "crate of Almond Snickers",
-        "retailPrice": 75.99,
-        "isImport": true,
-        "hasBasicTaxExclusion": false,
-        "priceWithTax": 0,
-        "quantity": 1
+        "category": {
+          "name": "Candy",
+          "taxExempt": true
+        },
+        "unitPrice": 75.99,
+        "imported": true,
+        "taxExempt": false
+
       },
       {
         "id": 7,
         "name": "Bottle of Wine",
-        "retailPrice": 10.00,
-        "isImport": true,
-        "hasBasicTaxExclusion": false,
-        "priceWithTax": 0,
-        "quantity": 1
+        "category": {
+          "name": "Wine",
+          "taxExempt": true
+        },
+        "unitPrice": 10.00,
+        "imported": true,
+        "taxExempt": false
       },
       {
         "id": 8,
         "name": "300# bag of Fair-Trade Coffee",
-        "retailPrice": 997.99,
-        "isImport": false,
-        "hasBasicTaxExclusion": false,
-        "priceWithTax": 0,
-        "quantity": 1
+        "category": {
+          "name": "Coffee",
+          "taxExempt": true
+        },
+        "unitPrice": 997.99,
+        "imported": false,
+        "taxExempt": true
       }
     ],
     "transactionFinalized": false

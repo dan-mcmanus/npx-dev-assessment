@@ -1,0 +1,9 @@
+<button btn btn-primary (click)="addProduct()"></button>
+<form [formGroup]="productsFG">
+
+  <ng-container formArrayName="product">
+    <div *ngFor="let _ of productFA.controls; index as i">
+      <input [formControlName]="i" />
+    </div>
+  </ng-container>
+</form>

@@ -1,15 +1,15 @@
-import { Product } from "@npx-dev/products";
+import { ProductsEntity } from "@npx-dev/products";
 
 export interface Basket {
   id: number | string
   name: string;
-  selectedProducts?: Product[];
+  selectedProducts?: ProductsEntity[];
   transactionFinalized: boolean;
 }
 
 export interface BasketEntity {
   id: number | string
   name: string;
-  selectedProducts?: Product[];
-  transactionFinalized: boolean;
+  selectedProducts?: ProductsEntity[];
+  transactionFinalized?: boolean;
 }

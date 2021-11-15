@@ -1,4 +1,5 @@
-import { Product } from "@npx-dev/products";
+import { ProductsEntity } from "@npx-dev/products";
+
 
 /**
  * Interface for the 'Baskets' data
@@ -6,6 +7,7 @@ import { Product } from "@npx-dev/products";
 export interface BasketsEntity {
   id: number | string; // Primary ID
   name: string;
-  selectedProducts?: Product[];
+  selectedProducts?: ProductsEntity[];
   transactionFinalized: boolean;
 }
+

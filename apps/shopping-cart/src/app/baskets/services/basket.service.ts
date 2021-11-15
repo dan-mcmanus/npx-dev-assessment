@@ -4,7 +4,7 @@ import { environment } from '../../../environments/environment';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Basket } from '../../core/model/basket';
-import { DataServiceError } from '../../services';
+import { DataServiceError } from '../../shared/data-error.service';
 
 
 @Injectable({

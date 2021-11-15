@@ -11,6 +11,7 @@ import { BasketsFacade } from './+state/baskets/baskets.facade';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { CalculateTaxPipe } from '../pipes/calculate-tax.pipe';
 
 @NgModule({
   imports: [
@@ -26,7 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
     ),
     EffectsModule.forFeature([BasketsEffects]),
   ],
-  declarations: [BasketsComponent],
+  declarations: [BasketsComponent, CalculateTaxPipe],
   exports: [BasketsComponent],
   providers: [BasketService, BasketsFacade],
 })

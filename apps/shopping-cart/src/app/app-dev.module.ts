@@ -17,7 +17,7 @@ import { InMemoryDataService } from './core/in-memory-data.service';
   ],
   providers: [
     { provide: InMemoryDataService, useExisting: InMemoryDbService },
-    {provide: LOCALE_ID, useValue: 'en-US' }
+    { provide: LOCALE_ID, useValue: 'en-US' }
 
   ],
   bootstrap: [ AppComponent ]
